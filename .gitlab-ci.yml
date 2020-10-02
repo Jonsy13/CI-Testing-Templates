@@ -1,0 +1,14 @@
+stages:
+  - setup
+
+Connect:
+  image: jonsy13/k3d
+  stage: setup
+  tags:
+    - litmus-portal-2
+  script:
+    - kubectl get pods
+  artifacts:
+    when: always
+    paths:
+      - .kube/
