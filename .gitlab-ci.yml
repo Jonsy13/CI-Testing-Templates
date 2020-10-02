@@ -7,6 +7,7 @@ Connect:
   tags:
     - litmus-portal-2
   script:
+    - k3d cluster create litmus
     - kubectl get pods
   artifacts:
     when: always
