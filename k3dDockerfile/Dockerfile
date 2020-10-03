@@ -27,7 +27,3 @@ RUN apt-get update                                          \
 #
 ADD https://storage.googleapis.com/kubernetes-release/release/v${KUBECTL_VERSION}/bin/linux/amd64/kubectl /usr/local/bin/kubectl
 RUN chmod +x /usr/local/bin/kubectl
-
-# Install kind
-#
-RUN wget -q -O - https://raw.githubusercontent.com/rancher/k3d/main/install.sh | bash

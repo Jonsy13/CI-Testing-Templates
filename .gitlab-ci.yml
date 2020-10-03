@@ -1,15 +1,18 @@
+variables:
+  KIND: v0.8.1
+# services:
+#   - docker:dind
 stages:
-  - setup
-
-Connect:
-  image: jonsy13/k3d
-  stage: setup
-  tags:
-    - litmus-portal-2
+  - test
+test:
+  image: jonsy13/runner
+  stage: test
   script:
-    - k3d cluster create litmus
-    - kubectl get pods
-  artifacts:
-    when: always
-    paths:
-      - .kube/
+    - apk add -U wget
+    - wget -O /usr/local/bin/kind https://github.com/kubernetes-sigs/kind/releases/download/${KIND}/kind-linux-amd64
+    - chmod +x /usr/local/bin/kind
+    - kind create cluster --config=./gitlab/kind-config.yaml
+    - sed -i -E -e 's/localhost|0\.0\.0\.0/docker/g' "$HOME/.kube/config"
+    - kubectl get nodes -o wide
+    - kubectl get pods --all-namespaces -o wide
+    - kubectl get services --all-namespaces -o wide
