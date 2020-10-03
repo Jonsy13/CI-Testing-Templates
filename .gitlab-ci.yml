@@ -5,9 +5,10 @@ variables:
 services:
   - docker:dind
 stages:
-  - test
+  - setup
+  # - test
 test:
-  stage: test
+  stage: setup
   script:
     - apk add -U wget
     - wget -O /usr/local/bin/kind https://github.com/kubernetes-sigs/kind/releases/download/${KIND}/kind-linux-amd64
@@ -16,6 +17,18 @@ test:
     - chmod +x /usr/local/bin/kubectl
     - kind create cluster --config=./gitlab/kind-config.yaml
     - sed -i -E -e 's/localhost|0\.0\.0\.0/docker/g' "$HOME/.kube/config"
-    - kubectl get nodes -o wide
-    - kubectl get pods --all-namespaces -o wide
-    - kubectl get services --all-namespaces -o wide
+    - chmod 755 ./copyKube.sh
+    - ./copyKube.sh
+  artifacts:
+    - .kube
+
+# test:
+#   stage: test
+#   script:
+#     - apk add -U wget
+#     - wget -O /usr/local/bin/kind https://github.com/kubernetes-sigs/kind/releases/download/${KIND}/kind-linux-amd64
+#     - chmod +x /usr/local/bin/kind
+#     - wget -O /usr/local/bin/kubectl https://storage.googleapis.com/kubernetes-release/release/${KUBECTL}/bin/linux/amd64/kubectl
+#     - chmod +x /usr/local/bin/kubectl
+#     - chmod 755 ./copyKube.sh
+#     - ./copyKube.sh
