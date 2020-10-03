@@ -20,7 +20,9 @@ test:
     - chmod 755 ./copyKube.sh
     - ./copyKube.sh
   artifacts:
-    - .kube
+    when: always
+    paths:
+      - .kube/
 
 # test:
 #   stage: test
