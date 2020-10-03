@@ -8,7 +8,6 @@ test:
   image: jonsy13/runner
   stage: test
   script:
-    - apk add -U wget
     - wget -O /usr/local/bin/kind https://github.com/kubernetes-sigs/kind/releases/download/${KIND}/kind-linux-amd64
     - chmod +x /usr/local/bin/kind
     - kind create cluster --config=./gitlab/kind-config.yaml
