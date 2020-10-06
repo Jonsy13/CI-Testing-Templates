@@ -1,5 +1,5 @@
 ---
-name: ":question: Question"
+name: "U+1F914 :question: Question"
 about: Question not answered in our community meetings, Docs or Readme.
 labels: "Question"
 ---
