@@ -1,5 +1,5 @@
 ---
-name: ":thinking::question: Question"
+name: ":thinking: :question: Question"
 about: Question not answered in our community meetings, Docs or Readme.
 labels: "Question"
 ---
