@@ -1,5 +1,5 @@
 ---
-name: "\U001F914 :question:" Question
+name: "\U0001F914 :question: Question"
 about: Question not answered in our community meetings, Docs or Readme.
 labels: Question
 ---
