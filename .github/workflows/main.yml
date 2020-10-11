@@ -12,3 +12,23 @@ jobs:
     # now you can run kubectl to see the pods in the cluster
     - name: kubectl 
       run: kubectl get pods -A
+
+    - name: Inspect contexts
+      run: |
+        echo "The github context is:"
+        echo "${{ toJson(github) }}"
+        echo ""
+        echo "The job context is:"
+        echo "${{ toJson(job) }}"
+        echo ""
+        echo "The steps context is:"
+        echo "${{ toJson(steps) }}"
+        echo ""
+        echo "The runner context is:"
+        echo "${{ toJson(runner) }}"
+        echo ""
+        echo "The strategy context is:"
+        echo "${{ toJson(strategy) }}"
+        echo ""
+        echo "The matrix context is:"
+        echo "${{ toJson(matrix) }}"
